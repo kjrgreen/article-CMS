@@ -48,6 +48,7 @@ namespace article_CMS.Pages
                 return Page();
             }
 
+            Article.LastUpdated = DateTime.UtcNow;
             _context.Attach(Article).State = EntityState.Modified;
 
             try

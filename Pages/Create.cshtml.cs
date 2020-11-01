@@ -36,6 +36,8 @@ namespace article_CMS.Pages
                 return Page();
             }
 
+
+            Article.Created = DateTime.UtcNow;
             _context.Articles.Add(Article);
             await _context.SaveChangesAsync();
 

@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using article_CMS.Data;
 using article_CMS.Models;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace article_CMS.Pages
 {
@@ -22,6 +24,8 @@ namespace article_CMS.Pages
 
         [BindProperty]
         public Article Article { get; set; }
+        [BindProperty]
+        public IFormFile Upload { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -48,7 +52,7 @@ namespace article_CMS.Pages
                 return Page();
             }
 
-
+            if (Upload != null && Upload.ContentType != "image/jpeg") return Page(); //Don't allow users to upload files that are not jpegs. I'm not certain this is sufficient validation.
 
             Article.LastUpdated = DateTime.UtcNow;
             _context.Attach(Article).State = EntityState.Modified;
@@ -66,6 +70,15 @@ namespace article_CMS.Pages
                 else
                 {
                     throw;
+                }
+            }
+
+            if (Upload != null)
+            {
+                var file = Path.Combine("Uploads", Article.Id.ToString() + ".jpg");
+                using (var fileStream = new FileStream(file, FileMode.Create))
+                {
+                    await Upload.CopyToAsync(fileStream);
                 }
             }
 

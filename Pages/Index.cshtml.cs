@@ -4,22 +4,26 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using article_CMS.Data;
+using article_CMS.Models;
 
 namespace article_CMS.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        private readonly article_CMS.Data.ApplicationDbContext _context;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public IndexModel(article_CMS.Data.ApplicationDbContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
-        public void OnGet()
-        {
+        public IList<Article> Article { get;set; }
 
+        public async Task OnGetAsync()
+        {
+            Article = await _context.Articles.ToListAsync();
         }
     }
 }

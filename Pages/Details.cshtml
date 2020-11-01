@@ -11,6 +11,7 @@
     <h4>Article</h4>
     <hr />
     <dl class="row">
+        <img src="@Html.Raw("Uploads/" + Model.Article.Id + ".jpg")" />
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Article.Title)
         </dt>

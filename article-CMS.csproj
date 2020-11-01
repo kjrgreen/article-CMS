@@ -17,7 +17,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Uploads\" />
+    <Folder Include="wwwroot\Uploads\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Uploads\.gitignore" />
+    <None Include="wwwroot\Uploads\15.jpg" />
   </ItemGroup>
 
 </Project>

@@ -48,7 +48,7 @@ namespace article_CMS.Pages
             _context.Articles.Add(Article);
             await _context.SaveChangesAsync();
 
-            var file = Path.Combine("Uploads", Article.Id.ToString() + ".jpg");
+            var file = Path.Combine("wwwroot", "Uploads", Article.Id.ToString() + ".jpg");
             using (var fileStream = new FileStream(file, FileMode.Create))
             {
                 await Upload.CopyToAsync(fileStream);

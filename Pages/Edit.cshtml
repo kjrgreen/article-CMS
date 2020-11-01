@@ -13,6 +13,8 @@
     <div class="col-md-4">
         <form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <img src="@Html.Raw("Uploads/" + Model.Article.Id + ".jpg")" />
+
             <input type="hidden" asp-for="Article.Id" />
             <div>
                 <p>If you want to change to a new image, upload one here: </p><input type="file" asp-for="Upload" accept="image/jpeg" />

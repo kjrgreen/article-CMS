@@ -54,6 +54,9 @@ namespace article_CMS.Pages
 
             if (Upload != null && Upload.ContentType != "image/jpeg") return Page(); //Don't allow users to upload files that are not jpegs. I'm not certain this is sufficient validation.
 
+            Article readArticle = await _context.Articles.AsNoTracking().FirstOrDefaultAsync(m => m.Id == Article.Id);
+
+            Article.Created = readArticle.Created;
             Article.LastUpdated = DateTime.UtcNow;
             _context.Attach(Article).State = EntityState.Modified;
 

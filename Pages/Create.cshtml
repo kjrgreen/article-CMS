@@ -14,7 +14,7 @@
         <form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div>
-                <input type="file" asp-for="Upload" />
+                <p>Upload a jpeg image for the article </p><input type="file" asp-for="Upload" accept="image/jpeg"/>
             </div>
             <div class="form-group">
                 <label asp-for="Article.Title" class="control-label"></label>

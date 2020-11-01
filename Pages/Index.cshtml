@@ -5,50 +5,58 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Articles</h1>
+@if (User.Identity.IsAuthenticated)
+{
+    <h1>Articles</h1>
 
-<p>
-    <a asp-page="Create">Create New Article</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Article[0].Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Article[0].Content)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Article[0].Created)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Article[0].LastUpdated)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Article) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Created)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastUpdated)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+    <p>
+        <a asp-page="Create">Create New Article</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Article[0].Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Article[0].Content)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Article[0].Created)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Article[0].LastUpdated)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Article)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Content)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Created)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastUpdated)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
-    </tbody>
-</table>
+else
+{
+    <p>Please register an account and log in in the top right in order to create and edit articles!</p>
+}

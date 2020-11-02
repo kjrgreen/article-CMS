@@ -42,6 +42,8 @@ namespace article_CMS
                     .Build();
             });
 
+            services.AddControllers();
+
             services.AddRazorPages(options =>
                 {
                     options.Conventions.AllowAnonymousToPage("/Index");
@@ -77,6 +79,7 @@ namespace article_CMS
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
         }
     }
